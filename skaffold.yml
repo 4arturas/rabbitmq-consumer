@@ -1,0 +1,12 @@
+apiVersion: skaffold/v1beta4
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+    - image: rabbitmq-consumer
+      jibMaven: {}
+deploy:
+  kubectl:
+    manifests:
+      - consumer.yaml

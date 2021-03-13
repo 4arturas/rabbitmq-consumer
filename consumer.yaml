@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq-consumer
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-consumer
+    spec:
+      containers:
+        - name: rabbitmq-consumer
+          image: rabbitmq-consumer
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: RABBITQM_RELAY_HOST
+              value: rabbitmq
+            - name: RABBITQM_RELAY_PORT
+              value: "5672"
